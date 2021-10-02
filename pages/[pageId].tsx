@@ -56,10 +56,6 @@ export default function NotionPage({ recordMap }) {
 
     const title = getPageTitle(recordMap);
     console.log(title, recordMap);
-    let dark = false;
-    if (process.browser) {
-        dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
     return (
         <>
             <Head>
@@ -69,7 +65,7 @@ export default function NotionPage({ recordMap }) {
             <NotionRenderer
                 recordMap={recordMap}
                 fullPage={true}
-                darkMode={dark}
+                darkMode={true}
             />
         </>
     );
