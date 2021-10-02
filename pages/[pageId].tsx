@@ -41,7 +41,7 @@ export async function getStaticPaths() {
         }
     );
 
-    const paths = Object.keys(pages).map((pageId) => `/${pageId}`);
+    const paths = Object.keys(pages).map((pageId) => `/`);
 
     return {
         paths,
