@@ -1,5 +1,7 @@
 import React from "react";
 import Head from "next/head";
+import Image from 'next/image'
+import Link from 'next/link'
 
 import { NotionAPI } from "notion-client";
 import { NotionRenderer } from "react-notion-x";
@@ -17,15 +19,15 @@ export const getStaticProps = async (context) => {
 };
 
 export default function NotionPage({ recordMap }) {
-    const [dark, setDark] = React.useState<boolean>(true);
+    const [darkMode, setDarkMode] = React.useState(true);
     React.useEffect(function () {
-        const darkMode =
+        setDarkMode(
             window?.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches;
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+        );
         window
             .matchMedia("(prefers-color-scheme: dark)")
-            .addEventListener("change", (e) => setDark(e.matches));
-        setDark(darkMode);
+            .addEventListener("change", (e) => setDarkMode(e.matches));
         return () => {
             window
                 .matchMedia("(prefers-color-scheme: dark)")
@@ -45,7 +47,11 @@ export default function NotionPage({ recordMap }) {
             <NotionRenderer
                 recordMap={recordMap}
                 fullPage={true}
-                darkMode={dark}
+                darkMode={darkMode}
+                components={{
+                    nextImage: Image,
+                    nextLink: Link
+                  }}
             />
         </>
     );
