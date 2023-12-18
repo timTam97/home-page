@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 
-import { getPageTitle } from "notion-utils";
 import { NotionAPI } from "notion-client";
 import { NotionRenderer } from "react-notion-x";
 
@@ -26,7 +25,6 @@ export default function NotionPage({ recordMap }) {
         window
             .matchMedia("(prefers-color-scheme: dark)")
             .addEventListener("change", (e) => setDark(e.matches));
-        console.log(darkMode);
         setDark(darkMode);
         return () => {
             window
@@ -38,8 +36,6 @@ export default function NotionPage({ recordMap }) {
     if (!recordMap) {
         return null;
     }
-    const title = getPageTitle(recordMap);
-    console.log(title, recordMap);
     return (
         <>
             <Head>
