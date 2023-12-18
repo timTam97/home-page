@@ -18,10 +18,26 @@ export const getStaticProps = async (context) => {
 };
 
 export default function NotionPage({ recordMap }) {
+    const [dark, setDark] = React.useState<boolean>(true);
+    React.useEffect(function () {
+        const darkMode =
+            window?.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", (e) => setDark(e.matches));
+        console.log(darkMode);
+        setDark(darkMode);
+        return () => {
+            window
+                .matchMedia("(prefers-color-scheme: dark)")
+                .removeEventListener("change", () => {});
+        };
+    }, []);
+
     if (!recordMap) {
         return null;
     }
-
     const title = getPageTitle(recordMap);
     console.log(title, recordMap);
     return (
@@ -33,7 +49,7 @@ export default function NotionPage({ recordMap }) {
             <NotionRenderer
                 recordMap={recordMap}
                 fullPage={true}
-                darkMode={true}
+                darkMode={dark}
             />
         </>
     );
