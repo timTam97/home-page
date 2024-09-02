@@ -15,17 +15,7 @@ Western governments’ restrictions have mostly focused on industrial products t
         </div></div> */}
             {/* <article className="prose prose-stone dark:prose-invert lg:prose-xl flex flex-col justify-center items-center text-center h-screen"> */}
             <div className="h-screen flex items-center justify-center text-center">
-                <article className="prose prose-stone dark:prose-invert lg:prose-xl px-6 py-10">
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                <article className="prose prose-stone dark:prose-invert lg:prose-xl px-6 mt-auto">
                     <h1>Garlic bread with cheese: What the science tells us</h1>
                     <p>
                         For years parents have espoused the health benefits of
