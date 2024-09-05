@@ -3,50 +3,78 @@ export default function Home() {
         <>
             <div className="h-screen flex items-center justify-center text-center">
                 <article className="prose prose-stone dark:prose-invert lg:prose-xl mx-6 mt-auto">
-                    <h1>For Eunice</h1>
+                    <h1>Sample Title</h1>
                     <p>
-                        happy birthday big sis. you're finally 30% of the way to
-                        a century.
+                        In a speech in Sydney, Reserve Bank of Australia (RBA)
+                        Governor Michele Bullock said bringing inflation down to
+                        the target band of 2-3% remains the central bank's
+                        highest priority. "If the economy evolves broadly as
+                        anticipated, the board does not expect that it will be
+                        in a position to cut rates in the near term," said
+                        Bullock. The hawkish rhetoric came even though data this
+                        week showed the economy barely grew in the second
+                        quarter as household consumption dragged. A monthly
+                        consumer price report had also showed headline inflation
+                        eased to 3.5% in July. Bullock emphasised domestic
+                        inflationary pressures, such as in housing and market
+                        services, were still contributing to above-target
+                        inflation, one reason that core inflation is only
+                        expected to slow to the target band toward the end of
+                        2025. She acknowledged the substantial uncertainty
+                        around the bank's central forecasts, adding that the
+                        board would respond appropriately to any change in
+                        circumstances. However, Bullock warned that if high
+                        inflation became entrenched in expectations, the RBA
+                        would have to slow the economy even more to bring it to
+                        heel.
                     </p>
                     <p>
-                        it's been a blessing to be your little brother all these
-                        years and i'm grateful for all the memories that we have
-                        made with each other, and the journeys that we have been
-                        through together.
-                    </p>
+                        In a speech in Sydney, Reserve Bank of Australia (RBA)
+                        Governor Michele Bullock said bringing inflation down to
+                        the target band of 2-3% remains the central bank's
+                        highest priority. "If the economy evolves broadly as
+                        anticipated, the board does not expect that it will be
+                        in a position to cut rates in the near term," said
+                        Bullock. The hawkish rhetoric came even though data this
+                        week showed the economy barely grew in the second
+                        quarter as household consumption dragged. A monthly
+                        consumer price report had also showed headline inflation
+                        eased to 3.5% in July. Bullock emphasised domestic
+                        inflationary pressures, such as in housing and market
+                        services, were still contributing to above-target
+                        inflation, one reason that core inflation is only
+                        expected to slow to the target band toward the end of
+                        2025. She acknowledged the substantial uncertainty
+                        around the bank's central forecasts, adding that the
+                        board would respond appropriately to any change in
+                        circumstances. However, Bullock warned that if high
+                        inflation became entrenched in expectations, the RBA
+                        would have to slow the economy even more to bring it to
+                        heel.
+                    </p>{" "}
                     <p>
-                        your continuous faith and trust in God is very much an
-                        example to me.
-                    </p>
-                    <p>
-                        praying much for your future and that the Lord will lead
-                        you, guide you, and be your guide for the next years of
-                        your life just as He has been faithful to you all these
-                        years.
-                    </p>
-                    <p>
-                        also praying that He will continue to use you in His
-                        service and to be a blessing to lots of people.
-                    </p>
-                    <div className="text-left">
-                        <blockquote>
-                            The Lord bless you and keep you;
-                            <br />
-                            the Lord make his face to shine upon you and be
-                            gracious to you;
-                            <br />
-                            the Lord lift up his countenance upon you and give
-                            you peace.
-                        </blockquote>
-                        <blockquote>
-                            For all the promises of God in Him are Yes, and in
-                            Him Amen, to the glory of God through us.
-                        </blockquote>
-                    </div>
-                    <h4 className="mb-20">tim</h4>
-                    <p>
-                        ps. this is part 1 of your gift. part 2 will come at an
-                        unspecified date 👀
+                        In a speech in Sydney, Reserve Bank of Australia (RBA)
+                        Governor Michele Bullock said bringing inflation down to
+                        the target band of 2-3% remains the central bank's
+                        highest priority. "If the economy evolves broadly as
+                        anticipated, the board does not expect that it will be
+                        in a position to cut rates in the near term," said
+                        Bullock. The hawkish rhetoric came even though data this
+                        week showed the economy barely grew in the second
+                        quarter as household consumption dragged. A monthly
+                        consumer price report had also showed headline inflation
+                        eased to 3.5% in July. Bullock emphasised domestic
+                        inflationary pressures, such as in housing and market
+                        services, were still contributing to above-target
+                        inflation, one reason that core inflation is only
+                        expected to slow to the target band toward the end of
+                        2025. She acknowledged the substantial uncertainty
+                        around the bank's central forecasts, adding that the
+                        board would respond appropriately to any change in
+                        circumstances. However, Bullock warned that if high
+                        inflation became entrenched in expectations, the RBA
+                        would have to slow the economy even more to bring it to
+                        heel.
                     </p>
                 </article>
             </div>
