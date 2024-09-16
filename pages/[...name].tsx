@@ -21,11 +21,21 @@ export const getServerSideProps = async (props: {
 };
 
 export default function Home({ source }) {
+    const dateBadge = source.frontmatter.date ? (
+        <p className="badge badge-outline">{source.frontmatter.date}</p>
+    ) : undefined;
+    const authorBadge = source.frontmatter.author ? (
+        <p className="badge badge-outline">{source.frontmatter.author}</p>
+    ) : undefined;
     return (
         <>
             <title>{source.frontmatter.title}</title>
             <div className="h-max flex justify-center text-left pt-12 pb-8">
                 <article className="prose dark:prose-invert md:prose-lg lg:prose-xl px-8 w-0 mx-auto mt-auto grow">
+                    <div className="space-x-3">
+                        {authorBadge}
+                        {dateBadge}
+                    </div>
                     <MDXRemote {...source} />
                 </article>
             </div>
