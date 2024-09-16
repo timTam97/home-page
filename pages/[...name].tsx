@@ -2,10 +2,10 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 
 export const getServerSideProps = async (props: {
-    params: { name: string };
+    params: { name: string[] };
 }) => {
-    let res = await fetch(
-        `https://${process.env.MD_SOURCE_URL}/${props.params.name}.md`
+    const res = await fetch(
+        `https://${process.env.MD_SOURCE_URL}/${props.params.name.join("/")}.md`
     );
     return res.status === 200
         ? {
