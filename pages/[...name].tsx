@@ -31,7 +31,7 @@ export default function Home({ source }) {
         <>
             <title>{source.frontmatter.title}</title>
             <div className="h-max flex justify-center text-left pt-12 pb-8">
-                <article className="prose dark:prose-invert md:prose-lg lg:prose-xl px-8 w-0 mx-auto mt-auto grow">
+                <article className="prose dark:prose-invert dark:prose-headings:text-white dark:text-white md:prose-lg lg:prose-xl px-8 w-0 mx-auto mt-auto grow">
                     <div className="space-x-3">
                         {authorBadge}
                         {dateBadge}
