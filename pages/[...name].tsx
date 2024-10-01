@@ -1,3 +1,5 @@
+import type { Metadata, ResolvingMetadata } from "next";
+
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 
@@ -18,6 +20,19 @@ export const getServerSideProps = async (props: {
         : {
               notFound: true,
           };
+};
+
+export const generateMetadata = async (props): Promise<Metadata> => {
+    const res = await fetch(
+        `https://${process.env.MD_SOURCE_URL}/${props.params.name.join("/")}.md`
+    );
+    const source = await serialize(await res.text(), {
+        parseFrontmatter: true,
+    });
+    return {
+        title: source.frontmatter.title as string,
+        description: source.frontmatter.description as string,
+    };
 };
 
 export default function Home({ source }) {
