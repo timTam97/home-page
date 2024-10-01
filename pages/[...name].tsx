@@ -31,7 +31,8 @@ export const generateMetadata = async (props): Promise<Metadata> => {
     });
     return {
         title: source.frontmatter.title as string,
-        description: source.frontmatter.description as string,
+        description: "yes hello there",
+        // description: source.frontmatter.description as string,
     };
 };
 
