@@ -34,6 +34,10 @@ export default function Home({ source }) {
                 <title>{source.frontmatter.title}</title>
                 <meta name="title" content={source.frontmatter.title} />
                 <meta property="og:title" content={source.frontmatter.title} />
+                <meta
+                    name="description"
+                    content={source.frontmatter.description}
+                />
             </Head>
             <div className="h-max flex justify-center text-left pt-12 pb-8">
                 <article className="prose dark:prose-invert dark:prose-headings:text-white dark:text-white md:prose-lg lg:prose-xl px-8 w-0 mx-auto mt-auto grow">
