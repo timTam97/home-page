@@ -39,8 +39,8 @@ export default function Home({ source }) {
                     content={source.frontmatter.description}
                 />
             </Head>
-            <div className="h-max flex justify-center text-left pt-12 pb-8">
-                <article className="prose dark:prose-invert dark:prose-headings:text-white dark:text-white md:prose-lg lg:prose-xl px-8 w-0 mx-auto mt-auto grow">
+            <div className="min-h-screen flex justify-center text-left py-12">
+                <article className="prose dark:prose-invert md:prose-lg lg:prose-xl px-8 mx-auto">
                     <div className="space-x-3">
                         {authorBadge}
                         {dateBadge}
