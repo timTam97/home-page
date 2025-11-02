@@ -96,7 +96,7 @@ export default function HomePage() {
                                 </h3>
                                 <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">Haskell, Win32 API</p>
                                 <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    Remotely control your computer! This app runs on your PC and connects to the API mentioned above. It receives commands through a websocket connection and uses the Windows API to execute them.
+                                    Windows client that receives WebSocket commands from the API to lock, sleep, hibernate, or shutdown your PC.
                                 </p>
                             </div>
 
@@ -137,7 +137,7 @@ export default function HomePage() {
                                     <h3 className="text-xl font-medium text-gray-900 dark:text-white">Solutions Architect Intern</h3>
                                     <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-1">Amazon Web Services (Dec 2020 - Feb 2021)</p>
                                     <p className="text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
-                                        I received deep-dive training in modern infrastructure design and management. I built out multiple features on a major internal project and shadowed real-world customer interactions. During this time I picked up my SA Associate certification.
+                                        Trained in cloud infrastructure design, developed features for internal projects, shadowed customer engagements, and earned SA Associate certification.
                                     </p>
                                 </div>
 
@@ -161,7 +161,7 @@ export default function HomePage() {
                                     <h3 className="text-xl font-medium text-gray-900 dark:text-white">Work Experience</h3>
                                     <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-1">CSIRO - High Performance Computing (HPC) (June 2016)</p>
                                     <p className="text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
-                                        I gained critical knowledge of research conducted in a scientific environment, as well as the teamwork and collaboration that are both crucial for success.
+                                        Gained exposure to scientific research workflows and collaborative practices in an HPC environment.
                                     </p>
                                 </div>
                             </div>
@@ -177,19 +177,13 @@ export default function HomePage() {
                                 <div>
                                     <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">AWS & Cloud</h4>
                                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        I possess strong knowledge of AWS and cloud computing. As a Solutions Architect at AWS, I dive deep into the platform and learn its ins and outs by facilitating customer engagements and building technical proof-of-concept demos.
-                                    </p>
-                                    <p className="text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
-                                        I am AWS Certified as a Solutions Architect Associate, Developer Associate and Cloud Practitioner.
+                                        As a Solutions Architect at AWS, I build technical proof-of-concept demos and facilitate customer engagements. I hold AWS certifications in Solutions Architect Associate, Developer Associate, and Cloud Practitioner.
                                     </p>
                                 </div>
                                 <div>
                                     <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">TypeScript</h4>
                                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        Pretty much my language of choice now. I frequently use it at AWS, as well as in multiple personal frontend and backend projects.
-                                    </p>
-                                    <p className="text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
-                                        I also used Typescript for my final year Computer Science project.
+                                        My primary language for both frontend and backend development at AWS and personal projects, including my final year Computer Science project.
                                     </p>
                                 </div>
                                 <div>
@@ -201,7 +195,7 @@ export default function HomePage() {
                                 <div>
                                     <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">C/C++ & Java</h4>
                                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        Used in many core units at Uni. In addition to my general background with both languages, I've got a little bit of experience with parallel computing in C, with libraries like OpenMP and OpenMPI.
+                                        Core university coursework languages, with additional experience in parallel computing using OpenMP and OpenMPI.
                                     </p>
                                 </div>
                             </div>
@@ -248,7 +242,7 @@ export default function HomePage() {
                                     Codebrew 2021 - Winner in Public Health & Best Tech (April 2021)
                                 </p>
                                 <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    A quick and secure way for cleaners of public transport to verify when they last cleaned the train, tram, or bus. Provides total transparency and assurance for passengers.
+                                    QR code system for timestamping public transport cleaning, providing transparency and accountability for passengers.
                                 </p>
                             </div>
 
