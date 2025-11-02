@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal home page built with Next.js that renders content from Notion and remote Markdown files. The site is hosted at timsam.au and deployed on Vercel.
+This is a personal home page built with Next.js featuring a static home page and dynamic remote Markdown file rendering. The site is hosted at timsam.au and deployed on Vercel.
 
 ## Development Commands
 
@@ -33,11 +33,12 @@ npm run deploy
 
 The application uses Next.js Pages Router with two distinct content rendering paths:
 
-1. **Notion-based home page** (`pages/index.tsx`)
-   - Fetches content from Notion API using the `PAGE_ID` environment variable
-   - Uses ISR (Incremental Static Regeneration) with 10-second revalidate
-   - Renders with `react-notion-x` library for Notion block rendering
+1. **Static home page** (`pages/index.tsx`)
+   - Pure Next.js/React implementation with all content directly in the component
+   - Static generation (no data fetching required)
+   - Styled with Tailwind CSS utility classes
    - Supports automatic dark mode detection via `prefers-color-scheme`
+   - Includes sections: Profile, Links, Side Projects, Work Experience, Skills, Hackathons, Education
 
 2. **Markdown rendering** (`pages/[...name].tsx`)
    - Catch-all route for dynamic markdown content (e.g., `/blog/post-name`)
@@ -56,22 +57,20 @@ The application uses Next.js Pages Router with two distinct content rendering pa
 ### Environment Variables
 
 Required in `.env` file:
-- `PAGE_ID` - Notion page ID for the home page
 - `MD_SOURCE_URL` - Base URL for fetching remote markdown files (format: `domain.com/path`)
 
 The markdown fetching constructs URLs as: `https://${MD_SOURCE_URL}/${pathname}.md`
 
 ### Key Dependencies
 
-- `notion-client` + `react-notion-x` - Notion content rendering
 - `next-mdx-remote` - MDX processing for remote markdown
-- `@notionhq/client` - Official Notion API client
 - `@vercel/speed-insights` - Performance monitoring
+- `tailwindcss` + `@tailwindcss/typography` + `daisyui` - Styling and UI components
 
 ## Code Structure
 
 - `pages/` - Next.js pages (Pages Router, not App Router)
-  - `index.tsx` - Notion-rendered home page (static with ISR)
+  - `index.tsx` - Static home page with embedded content (Tailwind styled)
   - `[...name].tsx` - Dynamic markdown pages (SSR)
   - `_app.tsx` - Global app wrapper, includes global styles
   - `layout.tsx` - Font configuration (Inter)
@@ -82,6 +81,7 @@ The markdown fetching constructs URLs as: `https://${MD_SOURCE_URL}/${pathname}.
 ## Important Notes
 
 - This uses the Pages Router, not the App Router
-- The home page uses ISR while markdown pages use SSR
+- The home page is statically generated (no external data fetching) while markdown pages use SSR
 - Dark mode is automatic based on system preferences (no toggle)
 - Markdown files must exist at the remote URL specified by `MD_SOURCE_URL`
+- Home page content is directly embedded in `pages/index.tsx` for easy editing
