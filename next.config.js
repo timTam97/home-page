@@ -7,4 +7,11 @@ module.exports = {
     env: {
         PAGE_ID: process.env.PAGE_ID,
     },
+    webpack: (config, { isServer }) => {
+        config.watchOptions = {
+            ...config.watchOptions,
+            ignored: /infrastructure/,
+        };
+        return config;
+    },
 };
