@@ -25,7 +25,8 @@
     ],
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "infrastructure"
   ],
   "include": [
     "next-env.d.ts",
