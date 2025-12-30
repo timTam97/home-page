@@ -4,7 +4,7 @@ export const getServerSideProps = async (props: {
     params: { name: string[] };
 }) => {
     const pdfUrl = `https://${
-        process.env.PDF_SOURCE_URL
+        process.env.MD_SOURCE_URL
     }/files/${props.params.name.join("/")}.pdf`;
 
     // HEAD request to verify PDF exists without downloading full file
