@@ -1,8 +1,8 @@
-"use strict";
+import dotenv from "dotenv";
 
-require("dotenv").config();
+dotenv.config();
 
-module.exports = {
+export default {
     reactStrictMode: true,
     env: {
         PAGE_ID: process.env.PAGE_ID,

@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "daisyui/daisyui.css";
+@import "daisyui/themes.css";
+
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 * {
     box-sizing: border-box;
@@ -28,8 +32,6 @@ body {
     background: rgb(var(--background-rgb));
 }
 
-@layer utilities {
-    .text-balance {
-        text-wrap: balance;
-    }
+@utility text-balance {
+    text-wrap: balance;
 }
