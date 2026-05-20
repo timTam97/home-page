@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal home page built with Next.js that renders content from Notion and remote Markdown files. The site is hosted at timsam.au and deployed on Vercel. AWS infrastructure (CDK) provides a table of contents API backed by DynamoDB.
+This is a personal home page built with Next.js. The home page is a native static React page; additional routes render remote Markdown files and PDFs. The site is hosted at timsam.au and deployed on Vercel. AWS infrastructure (CDK) provides a table of contents API backed by DynamoDB.
 
 ## Development Commands
 
@@ -38,10 +38,10 @@ npx ts-node infrastructure/scripts/populate-toc.ts  # Populate TOC from existing
 
 The application uses Next.js Pages Router with four content rendering paths:
 
-1. **Notion-based home page** (`pages/index.tsx`)
-   - Fetches content from Notion API using the `PAGE_ID` environment variable
-   - Uses ISR (Incremental Static Regeneration) with 10-second revalidate
-   - Renders with `react-notion-x` library for Notion block rendering
+1. **Static home page** (`pages/index.tsx`)
+   - Plain React/JSX page with bio, links, side projects, work experience, skills, hackathons, and education
+   - No external data fetching — fully static and prerendered at build time
+   - Uses Tailwind `prose` styling for typography
 
 2. **Markdown rendering** (`pages/[...name].tsx`)
    - Catch-all route for dynamic markdown content (e.g., `/blog/post-name`)
@@ -79,7 +79,6 @@ The CDK stack has its own `package.json` and `tsconfig.json`. Run `npm install` 
 ### Environment Variables
 
 Required in `.env` file:
-- `PAGE_ID` - Notion page ID for the home page
 - `MD_SOURCE_URL` - Base URL for fetching remote markdown files (format: `domain.com/path`)
 - `PDF_SOURCE_URL` - Base URL for fetching PDF files (format: `domain.com/path`)
 - `TOC_API_URL` - API Gateway endpoint for table of contents
