@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 
 import { NotionAPI } from "notion-client";
@@ -49,7 +48,6 @@ export default function NotionPage({ recordMap }) {
                 fullPage={true}
                 darkMode={darkMode}
                 components={{
-                    nextImage: Image,
                     nextLink: Link,
                 }}
             />
