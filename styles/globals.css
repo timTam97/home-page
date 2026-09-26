@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+/* daisyUI 5 default themes (light, dark via prefers-color-scheme) match
+   daisyUI 4's `themes: false`. In v5 `themes: false` disables all themes. */
+@plugin "daisyui";
 
 * {
     box-sizing: border-box;
@@ -26,10 +28,4 @@ body {
 body {
     color: rgb(var(--foreground-rgb));
     background: rgb(var(--background-rgb));
-}
-
-@layer utilities {
-    .text-balance {
-        text-wrap: balance;
-    }
 }
