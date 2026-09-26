@@ -2,7 +2,6 @@
     "name": "notion-x-example-full",
     "version": "6.16.2",
     "private": true,
-    "type": "commonjs",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -13,26 +12,26 @@
         "deploy": "vercel deploy"
     },
     "dependencies": {
-        "@notionhq/client": "^2.3.0",
-        "@vercel/speed-insights": "^1.3.1",
-        "dotenv": "^16.6.1",
-        "next": "^15.5.18",
+        "@notionhq/client": "^5.26.0",
+        "@vercel/speed-insights": "^2.0.0",
+        "dotenv": "^18.0.4",
+        "next": "^16.3.6",
         "next-mdx-remote": "^6.0.0",
-        "notion-client": "^7.10.0",
-        "notion-utils": "^7.10.0",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "react-notion-x": "^7.10.0"
+        "notion-client": "^8.0.8",
+        "notion-utils": "^8.0.8",
+        "react": "^19.3.0",
+        "react-dom": "^19.3.0",
+        "react-notion-x": "^8.0.8"
     },
     "devDependencies": {
-        "@next/bundle-analyzer": "^14.2.35",
-        "@tailwindcss/typography": "^0.5.19",
-        "@types/node": "^20.19.41",
-        "@types/react": "^18.3.28",
-        "autoprefixer": "^10.5.0",
-        "cross-env": "^7.0.3",
+        "@next/bundle-analyzer": "^16.3.6",
+        "@tailwindcss/typography": "^0.5.20",
+        "@types/node": "^22.20.4",
+        "@types/react": "^19.3.0",
+        "autoprefixer": "^10.6.1",
+        "cross-env": "^10.1.0",
         "daisyui": "^4.12.24",
-        "postcss": "^8.5.14",
+        "postcss": "^8.5.28",
         "tailwindcss": "^3.4.19",
         "typescript": "^5.9.3"
     }
