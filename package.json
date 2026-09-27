@@ -1,6 +1,6 @@
 {
-    "name": "notion-x-example-full",
-    "version": "6.16.2",
+    "name": "timsam-homepage",
+    "version": "1.0.0",
     "private": true,
     "scripts": {
         "dev": "next dev",
@@ -12,16 +12,12 @@
         "deploy": "vercel deploy"
     },
     "dependencies": {
-        "@notionhq/client": "^5.26.0",
         "@vercel/speed-insights": "^2.0.0",
         "dotenv": "^18.0.4",
         "next": "^16.3.6",
         "next-mdx-remote": "^6.0.0",
-        "notion-client": "^8.0.8",
-        "notion-utils": "^8.0.8",
         "react": "^19.3.0",
-        "react-dom": "^19.3.0",
-        "react-notion-x": "^8.0.8"
+        "react-dom": "^19.3.0"
     },
     "devDependencies": {
         "@next/bundle-analyzer": "^16.3.6",

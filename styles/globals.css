@@ -4,6 +4,20 @@
    daisyUI 4's `themes: false`. In v5 `themes: false` disables all themes. */
 @plugin "daisyui";
 
+/* Design tokens for the static home page (ported from the Tailwind 3
+   tailwind.config.ts theme.extend block). */
+@theme {
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    --color-apple-blue: #007aff;
+    --color-apple-blue-dark: #0051d5;
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    --blur-glass: 20px;
+}
+
 * {
     box-sizing: border-box;
 }
