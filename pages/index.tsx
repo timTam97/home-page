@@ -1,322 +1,292 @@
-import React from "react";
+import type { ReactNode } from "react";
 import Head from "next/head";
+import Image from "next/image";
+
+import ExternalLink from "../components/ExternalLink";
+import {
+    ArrowUpRightIcon,
+    AwardIcon,
+    GitHubIcon,
+    LinkedInIcon,
+} from "../components/Icons";
+import SectionNav from "../components/SectionNav";
+import SiteFooter from "../components/SiteFooter";
+import {
+    education,
+    experience,
+    hackathons,
+    profile,
+    projects,
+    sections,
+    skills,
+    socials,
+    type SectionId,
+} from "../content/home";
+import portrait from "../assets/profile.jpg";
+import painting from "../assets/rousseau-repast-of-the-lion.jpg";
+
+const ogImage = `${profile.url}/og.jpg`;
 
 export default function HomePage() {
     return (
         <>
             <Head>
-                <title>Tim's Site</title>
-                <meta name="description" content="Timothy Samraj - Solutions Architect at AWS" />
+                <title>{`${profile.name} · ${profile.role}`}</title>
+                <meta name="description" content={profile.description} />
+                <link rel="canonical" href={`${profile.url}/`} />
+                <meta property="og:type" content="profile" />
+                <meta property="og:url" content={`${profile.url}/`} />
+                <meta property="og:title" content={profile.name} />
+                <meta property="og:description" content={profile.description} />
+                <meta property="og:image" content={ogImage} />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta name="twitter:card" content="summary_large_image" />
             </Head>
 
-            <div className="min-h-screen bg-stone-50 dark:bg-zinc-950">
-                {/* Hero Section with Gradient */}
-                <div className="relative w-full h-72 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-50/20 dark:from-zinc-950/20" />
+            <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ink focus:shadow-glass"
+            >
+                Skip to content
+            </a>
+
+            <SectionNav />
+
+            <header id="top" className="relative isolate">
+                <div className="relative h-80 overflow-hidden sm:h-[26rem]">
+                    <Image
+                        src={painting}
+                        alt=""
+                        fill
+                        preload
+                        placeholder="blur"
+                        sizes="100vw"
+                        quality={80}
+                        className="object-cover object-[50%_30%]"
+                    />
+                    {/* Fade the painting into the page so the intro card
+                        reads cleanly in either colour scheme. */}
+                    <div
+                        aria-hidden
+                        className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-page"
+                    />
                 </div>
 
-                {/* Main Content Container */}
-                <div className="max-w-4xl mx-auto px-6 -mt-60 pb-20">
-                    {/* Frosted Glass Profile Card */}
-                    <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-glass rounded-2xl shadow-glass p-8 mb-12 border border-white/20 dark:border-zinc-800/50">
-                        <div className="flex flex-col items-center text-center mb-6">
-                            {/* Profile Image */}
-                            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 shadow-lg mb-6 ring-4 ring-white dark:ring-zinc-900" />
-
-                            {/* Name and Title */}
-                            <h1 className="text-5xl font-semibold mb-3 tracking-tight bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                                Timothy Samraj
-                            </h1>
-                            <p className="text-xl text-apple-blue dark:text-apple-blue font-medium mb-4">
-                                Solutions Architect at AWS
-                            </p>
-                            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
-                                Tim here. I'm currently a Solutions Architect at Amazon Web Services (AWS).
-                                Here you'll find my unofficial resume, as well as links to some of my side projects and hackathons.
-                            </p>
+                <div className="relative mx-auto -mt-32 max-w-5xl px-5 sm:-mt-48 sm:px-8">
+                    <div className="rounded-3xl border border-line/70 bg-surface/80 p-6 shadow-glass backdrop-blur-glass motion-safe:animate-rise sm:p-10">
+                        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
+                            <Image
+                                src={portrait}
+                                alt="Portrait of Timothy Samraj"
+                                width={144}
+                                height={144}
+                                preload
+                                className="size-24 shrink-0 rounded-full shadow-card ring-4 ring-surface sm:size-36"
+                            />
+                            <div>
+                                <h1 className="font-display text-4xl font-semibold tracking-tight text-balance text-ink sm:text-6xl">
+                                    {profile.name}
+                                </h1>
+                                <p className="mt-2 text-lg font-medium text-accent sm:text-xl">
+                                    {profile.role}
+                                </p>
+                            </div>
                         </div>
 
-                        {/* Social Links as Button Cards */}
-                        <div className="flex gap-4 justify-center flex-wrap">
-                            <a
-                                href="https://github.com/timTam97"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group px-6 py-3 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 rounded-xl hover:bg-apple-blue hover:text-white dark:hover:bg-apple-blue transition-all duration-300 shadow-xs hover:shadow-sm hover:-translate-y-0.5"
-                            >
-                                <span className="font-medium">GitHub</span>
-                                <span className="inline-block ml-2 group-hover:translate-x-0.5 transition-transform duration-300">↗</span>
-                            </a>
-                            <a
-                                href="https://www.linkedin.com/in/timothysamraj/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group px-6 py-3 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 rounded-xl hover:bg-apple-blue hover:text-white dark:hover:bg-apple-blue transition-all duration-300 shadow-xs hover:shadow-sm hover:-translate-y-0.5"
-                            >
-                                <span className="font-medium">LinkedIn</span>
-                                <span className="inline-block ml-2 group-hover:translate-x-0.5 transition-transform duration-300">↗</span>
-                            </a>
+                        <div className="mt-6 max-w-2xl space-y-3 leading-relaxed text-pretty text-ink-soft sm:text-lg">
+                            {profile.intro.map((line) => (
+                                <p key={line}>{line}</p>
+                            ))}
                         </div>
+
+                        <ul className="mt-8 flex flex-wrap gap-3">
+                            <li>
+                                <ExternalLink
+                                    href={socials.github.href}
+                                    className="button group"
+                                >
+                                    <GitHubIcon className="size-4" />
+                                    {socials.github.label}
+                                    <ArrowUpRightIcon className="size-3.5 opacity-60 transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
+                                </ExternalLink>
+                            </li>
+                            <li>
+                                <ExternalLink
+                                    href={socials.linkedin.href}
+                                    className="button group"
+                                >
+                                    <LinkedInIcon className="size-4" />
+                                    {socials.linkedin.label}
+                                    <ArrowUpRightIcon className="size-3.5 opacity-60 transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
+                                </ExternalLink>
+                            </li>
+                        </ul>
                     </div>
-
-                    {/* Side Projects Section */}
-                    <section className="mb-16">
-                        <h2 className="text-3xl font-semibold mb-8 text-gray-900 dark:text-white">(Some of) My side Projects</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="group bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-zinc-800">
-                                <h3 className="text-xl font-medium mb-2">
-                                    <a
-                                        href="https://github.com/timTam97/compcontrol-api"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-apple-blue hover:text-apple-blue-dark transition-colors duration-200"
-                                    >
-                                        compcontrol-api
-                                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
-                                    </a>
-                                </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">AWS CDK, TypeScript, Python</p>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    An API that allows you to remotely control your computer.
-                                </p>
-                            </div>
-
-                            <div className="group bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-zinc-800">
-                                <h3 className="text-xl font-medium mb-2">
-                                    <a
-                                        href="https://github.com/timTam97/compcontrol-client"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-apple-blue hover:text-apple-blue-dark transition-colors duration-200"
-                                    >
-                                        compcontrol-client
-                                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
-                                    </a>
-                                </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">Haskell, Win32 API</p>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    Windows client that receives WebSocket commands from the API to lock, sleep, hibernate, or shutdown your PC.
-                                </p>
-                            </div>
-
-                            <div className="group bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-zinc-800">
-                                <h3 className="text-xl font-medium mb-2">
-                                    <a
-                                        href="https://github.com/timTam97/screenlapse"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-apple-blue hover:text-apple-blue-dark transition-colors duration-200"
-                                    >
-                                        screenlapse
-                                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
-                                    </a>
-                                </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">Python, AWS S3</p>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    Takes a screenshot every few seconds and stitches a video together, creating a timelapse of your screen.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Work Experience Section */}
-                    <section className="mb-16">
-                        <h2 className="text-3xl font-semibold mb-8 text-gray-900 dark:text-white">Work Experience</h2>
-                        <div className="bg-white dark:bg-zinc-900 rounded-xl p-8 shadow-card border border-gray-100 dark:border-zinc-800">
-                            <div className="space-y-8">
-                                <div className="border-l-2 border-apple-blue pl-6">
-                                    <h3 className="text-xl font-medium text-gray-900 dark:text-white">Solutions Architect</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-1">Amazon Web Services (Feb 2022 - Present)</p>
-                                    <p className="text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
-                                        I work with Public Sector customers to help them build scalable and resilient workloads that provide value to citizens and residents across Australia.
-                                    </p>
-                                </div>
-
-                                <div className="border-l-2 border-gray-300 dark:border-zinc-700 pl-6">
-                                    <h3 className="text-xl font-medium text-gray-900 dark:text-white">Solutions Architect Intern</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-1">Amazon Web Services (Dec 2020 - Feb 2021)</p>
-                                    <p className="text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
-                                        Trained in cloud infrastructure design, developed features for internal projects, shadowed customer engagements, and earned SA Associate certification.
-                                    </p>
-                                </div>
-
-                                <div className="border-l-2 border-gray-300 dark:border-zinc-700 pl-6">
-                                    <h3 className="text-xl font-medium text-gray-900 dark:text-white">Programming Bootcamp Tutor</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-1">Monash University (Aug 2020)</p>
-                                    <p className="text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
-                                        Assisted students who are new to programming in getting a head start before formal lectures.
-                                    </p>
-                                </div>
-
-                                <div className="border-l-2 border-gray-300 dark:border-zinc-700 pl-6">
-                                    <h3 className="text-xl font-medium text-gray-900 dark:text-white">Peer Mentor</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-1">Monash University (Jan 2020 - Jul 2020, Feb 2021 - Jul 2021)</p>
-                                    <p className="text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
-                                        Assisted new students in transitioning to university life by conducting weekly catch-ups and providing advice on courses and university.
-                                    </p>
-                                </div>
-
-                                <div className="border-l-2 border-gray-300 dark:border-zinc-700 pl-6">
-                                    <h3 className="text-xl font-medium text-gray-900 dark:text-white">Work Experience</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-1">CSIRO - High Performance Computing (HPC) (June 2016)</p>
-                                    <p className="text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
-                                        Gained exposure to scientific research workflows and collaborative practices in an HPC environment.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Skills & Technology Section */}
-                    <section className="mb-16">
-                        <h2 className="text-3xl font-semibold mb-8 text-gray-900 dark:text-white">Skills & Other Experience</h2>
-                        <div className="bg-white dark:bg-zinc-900 rounded-xl p-8 shadow-card border border-gray-100 dark:border-zinc-800">
-                            <h3 className="text-xl font-medium mb-6 text-gray-900 dark:text-white">💻 Technology</h3>
-                            <div className="space-y-6">
-                                <div>
-                                    <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">AWS & Cloud</h4>
-                                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        As a Solutions Architect at AWS, I build technical proof-of-concept demos and facilitate customer engagements. I hold AWS certifications in Solutions Architect Associate, Developer Associate, and Cloud Practitioner.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">TypeScript</h4>
-                                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        My primary language for both frontend and backend development at AWS and personal projects, including my final year Computer Science project.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Python</h4>
-                                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        Used in most of my core algorithm-based Computer Science units, as well as multiple personal projects.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">C/C++ & Java</h4>
-                                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        Core university coursework languages, with additional experience in parallel computing using OpenMP and OpenMPI.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Hackathons Section */}
-                    <section className="mb-16">
-                        <h2 className="text-3xl font-semibold mb-8 text-gray-900 dark:text-white">Hackathons</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="group bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-zinc-800">
-                                <h3 className="text-xl font-medium mb-2">
-                                    <a
-                                        href="https://devpost.com/software/qube"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-apple-blue hover:text-apple-blue-dark transition-colors duration-200"
-                                    >
-                                        Qube
-                                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
-                                    </a>
-                                </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">
-                                    Unihack 2022 - Engineering Excellence Prize (April 2021)
-                                </p>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    A mobile app to search, book, and virtually queue for doctor appointments, and a web platform for doctors to manage appointments.
-                                </p>
-                            </div>
-
-                            <div className="group bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-zinc-800">
-                                <h3 className="text-xl font-medium mb-2">
-                                    <a
-                                        href="https://devpost.com/software/cleaned"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-apple-blue hover:text-apple-blue-dark transition-colors duration-200"
-                                    >
-                                        cleaner.io
-                                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
-                                    </a>
-                                </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">
-                                    Codebrew 2021 - Winner in Public Health & Best Tech (April 2021)
-                                </p>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    QR code system for timestamping public transport cleaning, providing transparency and accountability for passengers.
-                                </p>
-                            </div>
-
-                            <div className="group bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-zinc-800">
-                                <h3 className="text-xl font-medium mb-2">
-                                    <a
-                                        href="https://devpost.com/software/skynet-ela2x3"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-apple-blue hover:text-apple-blue-dark transition-colors duration-200"
-                                    >
-                                        SkyNet
-                                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
-                                    </a>
-                                </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">
-                                    Unihack 2021 - Best Social Impact (March 2021)
-                                </p>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    An easily deployable & effective communication system for use after a natural disaster.
-                                </p>
-                            </div>
-
-                            <div className="group bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-zinc-800">
-                                <h3 className="text-xl font-medium mb-2">
-                                    <a
-                                        href="https://github.com/timTam97/mediplus"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-apple-blue hover:text-apple-blue-dark transition-colors duration-200"
-                                    >
-                                        MediPlus
-                                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
-                                    </a>
-                                </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">
-                                    Codebrew 2020 - Second place (August 2020)
-                                </p>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    An all-in-one solution for booking and managing appointments with your GP.
-                                </p>
-                            </div>
-
-                            <div className="group bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-zinc-800">
-                                <h3 className="text-xl font-medium mb-2">
-                                    <a
-                                        href="https://devpost.com/software/hireme"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-apple-blue hover:text-apple-blue-dark transition-colors duration-200"
-                                    >
-                                        Séance Photo
-                                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
-                                    </a>
-                                </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-3">
-                                    Bit by Bit Hackathon 2019 - Second place for First Time Hackers (August 2019)
-                                </p>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    A platform for freelance photographers to promote and market their services.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Education Section */}
-                    <section className="mb-12">
-                        <h2 className="text-3xl font-semibold mb-8 text-gray-900 dark:text-white">Education</h2>
-                        <div className="bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-card border border-gray-100 dark:border-zinc-800">
-                            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Bachelor's Degree in Computer Science</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-1">Monash University, Clayton (2019 - 2022)</p>
-                        </div>
-                    </section>
                 </div>
+            </header>
+
+            <main id="main" className="mx-auto mt-6 max-w-5xl px-5 sm:mt-10 sm:px-8">
+                <Section id="projects">
+                    <ul className="grid gap-4 sm:grid-cols-2">
+                        {projects.map((project) => (
+                            <li
+                                key={project.name}
+                                className="tile tile-interactive group flex flex-col sm:last:odd:col-span-2"
+                            >
+                                <h3 className="font-display text-xl font-semibold text-ink">
+                                    <ExternalLink
+                                        href={project.href}
+                                        className="tile-link"
+                                    >
+                                        {project.name}
+                                    </ExternalLink>
+                                </h3>
+                                <p className="mt-2 leading-relaxed text-ink-soft">
+                                    {project.description}
+                                </p>
+                                <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Built with">
+                                    {project.stack.map((tech) => (
+                                        <li key={tech} className="chip">
+                                            {tech}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <CardFooter label="GitHub" />
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+
+                <Section id="experience">
+                    <ol className="relative space-y-10 before:absolute before:inset-y-2 before:left-[5px] before:w-px before:bg-line">
+                        {experience.map((role) => (
+                            <li key={`${role.title}-${role.period}`} className="relative pl-9">
+                                <span
+                                    aria-hidden
+                                    className={`absolute left-0 top-2 size-[11px] rounded-full ring-4 ring-page ${
+                                        role.current ? "bg-accent" : "bg-line-strong"
+                                    }`}
+                                />
+                                <h3 className="font-display text-xl font-semibold text-ink">
+                                    {role.title}
+                                </h3>
+                                <p className="mt-1 flex flex-wrap gap-x-2 text-sm text-muted">
+                                    <span>{role.org}</span>
+                                    <span aria-hidden className="hidden sm:inline">
+                                        ·
+                                    </span>
+                                    <span>{role.period}</span>
+                                </p>
+                                <p className="mt-3 max-w-2xl leading-relaxed text-ink-soft">
+                                    {role.description}
+                                </p>
+                            </li>
+                        ))}
+                    </ol>
+                </Section>
+
+                <Section id="skills">
+                    <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+                        {skills.map((skill) => (
+                            <div key={skill.name} className="border-t-2 border-sun/60 pt-4">
+                                <dt className="font-display text-lg font-semibold text-ink">
+                                    {skill.name}
+                                </dt>
+                                <dd className="mt-2 leading-relaxed text-ink-soft">
+                                    {skill.description}
+                                </dd>
+                            </div>
+                        ))}
+                    </dl>
+                </Section>
+
+                <Section id="hackathons">
+                    <ul className="grid gap-4 sm:grid-cols-2">
+                        {hackathons.map((hack) => (
+                            <li
+                                key={hack.name}
+                                className="tile tile-interactive group flex flex-col sm:last:odd:col-span-2"
+                            >
+                                <p className="text-xs font-medium tracking-wide text-muted uppercase">
+                                    {hack.event}
+                                    <span aria-hidden className="mx-1.5">
+                                        ·
+                                    </span>
+                                    {hack.date}
+                                </p>
+                                <h3 className="mt-2 font-display text-xl font-semibold text-ink">
+                                    <ExternalLink href={hack.href} className="tile-link">
+                                        {hack.name}
+                                    </ExternalLink>
+                                </h3>
+                                <p className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-sun/15 px-2.5 py-1 text-xs font-medium text-sun-ink">
+                                    <AwardIcon className="size-3.5" />
+                                    {hack.award}
+                                </p>
+                                <p className="mt-3 leading-relaxed text-ink-soft">
+                                    {hack.description}
+                                </p>
+                                <CardFooter label={hack.linkLabel} />
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+
+                <Section id="education">
+                    <div className="tile">
+                        <h3 className="font-display text-xl font-semibold text-ink">
+                            {education.degree}
+                        </h3>
+                        <p className="mt-1 text-ink-soft">{education.institution}</p>
+                        <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted">
+                            <span className="chip">{education.status}</span>
+                            {education.period}
+                        </p>
+                    </div>
+                </Section>
+            </main>
+
+            <div className="mt-8">
+                <SiteFooter />
             </div>
         </>
+    );
+}
+
+function Section({ id, children }: { id: SectionId; children: ReactNode }) {
+    const index = sections.findIndex((s) => s.id === id);
+    const { title } = sections[index];
+    return (
+        <section
+            id={id}
+            aria-labelledby={`${id}-title`}
+            className="scroll-mt-24 border-t border-line py-14 first:border-t-0 sm:py-16 lg:grid lg:grid-cols-[12rem_1fr] lg:gap-12"
+        >
+            <div className="mb-8 lg:mb-0">
+                <div className="lg:sticky lg:top-24">
+                    <p aria-hidden className="font-display text-sm font-medium text-sun-ink tabular-nums">
+                        {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h2
+                        id={`${id}-title`}
+                        className="mt-1 font-display text-3xl font-semibold tracking-tight text-ink"
+                    >
+                        {title}
+                    </h2>
+                </div>
+            </div>
+            <div>{children}</div>
+        </section>
+    );
+}
+
+/** Visual "View on …" affordance; the card's heading link is the real link. */
+function CardFooter({ label }: { label: string }) {
+    return (
+        <p aria-hidden className="mt-auto flex items-center gap-1 pt-5 text-sm font-medium text-accent">
+            {label}
+            <ArrowUpRightIcon className="size-3.5 transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
+        </p>
     );
 }
