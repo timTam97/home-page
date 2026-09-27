@@ -1,31 +1,189 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-/* daisyUI 5 default themes (light, dark via prefers-color-scheme) match
-   daisyUI 4's `themes: false`. In v5 `themes: false` disables all themes. */
+
+/* daisyUI supplies the badges on markdown pages. Its built-in light and dark
+   themes are re-tinted to the site palette below; `prefersdark` keeps the
+   automatic switch on prefers-color-scheme (there is no manual toggle). */
 @plugin "daisyui";
-
-* {
-    box-sizing: border-box;
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-base-100: #fffcf5;
+    --color-base-200: #f4efe4;
+    --color-base-300: #ded5c1;
+    --color-base-content: #15221a;
+    --color-primary: #2a6446;
+    --color-primary-content: #fffcf5;
+}
+@plugin "daisyui/theme" {
+    name: "dark";
+    prefersdark: true;
+    --color-base-100: #131e18;
+    --color-base-200: #0c1410;
+    --color-base-300: #243229;
+    --color-base-content: #edf2ea;
+    --color-primary: #84cda4;
+    --color-primary-content: #0c1410;
 }
 
-body {
-    padding: 0;
-    margin: 0;
-}
-
+/* Site palette, lifted from the header painting (Rousseau's jungle greens
+   and banana ochre). Every text colour below clears WCAG AA (>= 4.5:1) on
+   both `page` and `surface` in its own scheme. */
 :root {
-    --foreground-rgb: 231 229 228;
-    --background-rgb: 231 229 228;
+    --page: #f4efe4;
+    --surface: #fffcf5;
+    --line: #ded5c1;
+    --line-strong: #c4b99f;
+    --ink: #15221a;
+    --ink-soft: #33433a;
+    --muted: #58675d;
+    --accent: #2a6446;
+    --accent-strong: #1c4a33;
+    --sun: #c08a1e;
+    --sun-ink: #7a520b;
+    --pre-bg: #14201a;
+    --root-bg: var(--page);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-rgb: 39 39 42;
+        --page: #0c1410;
+        --surface: #131e18;
+        --line: #243229;
+        --line-strong: #3a4b40;
+        --ink: #edf2ea;
+        --ink-soft: #c9d3c8;
+        --muted: #98a99d;
+        --accent: #84cda4;
+        --accent-strong: #a8e2c0;
+        --sun: #e7b64c;
+        --sun-ink: #f0c86a;
+        --pre-bg: #17251d;
     }
 }
 
-body {
-    color: rgb(var(--foreground-rgb));
-    background: rgb(var(--background-rgb));
+/* `inline` so utilities read the variables at use time and follow the
+   colour scheme without `dark:` variants. The font variables are set by
+   next/font in pages/_app.tsx. */
+@theme inline {
+    --color-page: var(--page);
+    --color-surface: var(--surface);
+    --color-line: var(--line);
+    --color-line-strong: var(--line-strong);
+    --color-ink: var(--ink);
+    --color-ink-soft: var(--ink-soft);
+    --color-muted: var(--muted);
+    --color-accent: var(--accent);
+    --color-accent-strong: var(--accent-strong);
+    --color-sun: var(--sun);
+    --color-sun-ink: var(--sun-ink);
+    --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+        "Segoe UI", sans-serif;
+    --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman",
+        serif;
+}
+
+@theme {
+    --shadow-card: 0 1px 2px rgb(21 34 26 / 0.05),
+        0 2px 8px rgb(21 34 26 / 0.04);
+    --shadow-card-hover: 0 2px 8px rgb(21 34 26 / 0.06),
+        0 12px 28px rgb(21 34 26 / 0.09);
+    --shadow-glass: 0 12px 40px rgb(12 20 16 / 0.14);
+    --blur-glass: 20px;
+    --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+    @keyframes rise {
+        from {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+@layer base {
+    body {
+        @apply bg-page text-ink antialiased;
+    }
+
+    ::selection {
+        background: color-mix(in oklab, var(--sun) 35%, transparent);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+}
+
+@layer components {
+    /* Pill-shaped primary links (hero). */
+    .button {
+        @apply inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink shadow-card transition-colors duration-200 hover:border-accent hover:bg-accent hover:text-surface;
+    }
+
+    .icon-button {
+        @apply inline-flex size-9 items-center justify-center rounded-full border border-line text-muted transition-colors duration-200 hover:border-accent hover:text-accent;
+    }
+
+    .link-quiet {
+        @apply underline decoration-line-strong decoration-1 underline-offset-2 transition-colors hover:text-accent hover:decoration-accent;
+    }
+
+    .chip {
+        @apply inline-flex items-center rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent;
+    }
+
+    .tile {
+        @apply relative rounded-2xl border border-line bg-surface p-6 shadow-card transition-[translate,box-shadow,border-color] duration-300;
+    }
+
+    /* Whole-card link: the heading's anchor stretches over the card, so a
+       card is one tab stop with a sensible accessible name. */
+    .tile-interactive {
+        @apply hover:border-accent/50 hover:shadow-card-hover motion-safe:hover:-translate-y-0.5;
+    }
+
+    .tile-link {
+        @apply after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:outline-none;
+    }
+
+    /* The anchor itself draws no outline (it is stretched over the card),
+       so the card shows the focus ring instead. */
+    .tile-interactive:focus-within {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+    }
+}
+
+/* Typography plugin colours, mapped to the palette so markdown pages follow
+   the colour scheme without prose-invert. */
+.prose {
+    --tw-prose-body: var(--ink-soft);
+    --tw-prose-headings: var(--ink);
+    --tw-prose-lead: var(--ink-soft);
+    --tw-prose-links: var(--accent);
+    --tw-prose-bold: var(--ink);
+    --tw-prose-counters: var(--muted);
+    --tw-prose-bullets: var(--line-strong);
+    --tw-prose-hr: var(--line);
+    --tw-prose-quotes: var(--ink);
+    --tw-prose-quote-borders: var(--sun);
+    --tw-prose-captions: var(--muted);
+    --tw-prose-kbd: var(--ink);
+    --tw-prose-kbd-shadows: 21 34 26;
+    --tw-prose-code: var(--ink);
+    --tw-prose-pre-code: #e6ede4;
+    --tw-prose-pre-bg: var(--pre-bg);
+    --tw-prose-th-borders: var(--line-strong);
+    --tw-prose-td-borders: var(--line);
 }
