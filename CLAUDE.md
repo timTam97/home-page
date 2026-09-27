@@ -34,11 +34,10 @@ npm run deploy
 The application uses Next.js Pages Router with two distinct content rendering paths:
 
 1. **Static home page** (`pages/index.tsx`)
-   - Pure Next.js/React implementation with all content directly in the component
-   - Static generation (no data fetching required)
-   - Styled with Tailwind CSS utility classes
-   - Supports automatic dark mode detection via `prefers-color-scheme`
-   - Includes sections: Profile, Links, Side Projects, Work Experience, Skills, Hackathons, Education
+   - Pure Next.js/React page, prerendered at build time (no data fetching)
+   - All copy lives in `content/home.ts` as typed data; `pages/index.tsx` only renders it
+   - Header image is Henri Rousseau's *The Repast of the Lion* (public domain, The Met), credited in the footer
+   - Sections: intro card, Side projects, Experience, Skills, Hackathons, Education, with a floating section nav (`components/SectionNav.tsx`)
 
 2. **Markdown rendering** (`pages/[...name].tsx`)
    - Catch-all route for dynamic markdown content (e.g., `/blog/post-name`)
@@ -49,10 +48,13 @@ The application uses Next.js Pages Router with two distinct content rendering pa
 
 ### Styling
 
-- Tailwind CSS for utility-first styling
-- DaisyUI for component library (used for badges in markdown pages)
-- `@tailwindcss/typography` for prose styling on markdown content
-- Dark mode support via CSS custom properties and `prefers-color-scheme`
+- Tailwind CSS 4, configured in CSS (`styles/globals.css`); there is no `tailwind.config.*`
+- Palette: CSS variables on `:root` (light) and `prefers-color-scheme: dark`, exposed as utilities through `@theme inline` (`bg-page`, `bg-surface`, `text-ink`, `text-ink-soft`, `text-muted`, `text-accent`, `border-line`, `text-sun-ink`, ...). They switch with the colour scheme, so no `dark:` variants are needed. Keep new text colours at WCAG AA contrast on both `page` and `surface`
+- Fonts: Fraunces (`font-display`, headings) and Inter (`font-sans`, body) via `next/font/google` in `pages/_app.tsx`, self-hosted at build time
+- Shared component classes (`button`, `tile`, `chip`, `icon-button`, `link-quiet`) are in `@layer components` in `globals.css`
+- daisyUI 5 for badges on markdown pages; its light/dark themes are re-tinted to the palette
+- `@tailwindcss/typography` for markdown pages; prose colours map to the palette in `globals.css`
+- Dark mode is automatic via `prefers-color-scheme` (no toggle)
 
 ### Environment Variables
 
@@ -65,18 +67,23 @@ The markdown fetching constructs URLs as: `https://${MD_SOURCE_URL}/${pathname}.
 
 - `next-mdx-remote` - MDX processing for remote markdown
 - `@vercel/speed-insights` - Performance monitoring
-- `tailwindcss` + `@tailwindcss/typography` + `daisyui` - Styling and UI components
+- `tailwindcss` 4 + `@tailwindcss/typography` + `daisyui` 5 - Styling and UI components
 
 ## Code Structure
 
 - `pages/` - Next.js pages (Pages Router, not App Router)
-  - `index.tsx` - Static home page with embedded content (Tailwind styled)
+  - `index.tsx` - Static home page (renders `content/home.ts`)
   - `[...name].tsx` - Dynamic markdown pages (SSR)
-  - `_app.tsx` - Global app wrapper, includes global styles
-  - `layout.tsx` - Font configuration (Inter)
-- `styles/globals.css` - Global styles and Tailwind imports
-- `next.config.js` - Next.js configuration with environment variable injection
-- `tailwind.config.ts` - Tailwind and plugin configuration
+  - `files/[...name].tsx` - PDF viewer for `${MD_SOURCE_URL}/files/*.pdf` (SSR)
+  - `404.tsx` - Not-found page
+  - `_app.tsx` - Global app wrapper: global styles, fonts, Speed Insights
+  - `_document.tsx` - `<html lang>`, favicon, theme-color
+- `content/home.ts` - Home page copy (edit this to change the site's content)
+- `components/` - `SectionNav`, `SiteFooter`, `ExternalLink`, `Icons`
+- `assets/` - Images imported by pages (profile photo, header painting); `next/image` optimises them
+- `public/` - `favicon.ico`, `og.jpg` (1200x630 social preview), `robots.txt`
+- `styles/globals.css` - Tailwind 4 config, palette, component classes
+- `next.config.js` - Next.js configuration
 
 ## Important Notes
 
@@ -84,4 +91,5 @@ The markdown fetching constructs URLs as: `https://${MD_SOURCE_URL}/${pathname}.
 - The home page is statically generated (no external data fetching) while markdown pages use SSR
 - Dark mode is automatic based on system preferences (no toggle)
 - Markdown files must exist at the remote URL specified by `MD_SOURCE_URL`
-- Home page content is directly embedded in `pages/index.tsx` for easy editing
+- Home page content lives in `content/home.ts`; the Education entry must keep "Partially complete"
+- `public/og.jpg` is a static image; regenerate it if the name or role changes
